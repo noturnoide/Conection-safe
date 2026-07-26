@@ -16,8 +16,9 @@ const FIELDS = [
   {
     key: "localidade",
     label: "Localidade",
-    hint: "Selecione entre os itens:",
-    options: ["Cinemi", "Refeitório", "Espaço maker"],
+    hint: "Digite o local onde ocorreu:",
+    type: "text",
+    placeholder: "Ex.: Cinemi, Refeitório, Espaço maker...",
   },
   {
     key: "vivencia",
@@ -85,12 +86,23 @@ export default function FormStep1() {
             >
               <label className="block mb-1 font-medium text-white">{field.label}</label>
               <p className="text-xs text-white/40 mb-3">{field.hint}</p>
-              <StyledSelect
-                testid={`select-${field.key}`}
-                value={form[field.key]}
-                onValueChange={(v) => update(field.key, v)}
-                options={field.options}
-              />
+              {field.type === "text" ? (
+                <input
+                  type="text"
+                  data-testid={`input-${field.key}`}
+                  value={form[field.key]}
+                  onChange={(e) => update(field.key, e.target.value)}
+                  placeholder={field.placeholder}
+                  className="w-full rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-md px-6 py-4 text-base text-white placeholder:text-white/30 focus:outline-none focus:border-[#34D399]/50 focus:bg-white/10 focus:ring-4 focus:ring-[#34D399]/10 transition-colors duration-300"
+                />
+              ) : (
+                <StyledSelect
+                  testid={`select-${field.key}`}
+                  value={form[field.key]}
+                  onValueChange={(v) => update(field.key, v)}
+                  options={field.options}
+                />
+              )}
             </motion.div>
           ))}
 
