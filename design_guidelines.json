@@ -1,0 +1,117 @@
+{
+  "project_name": "Canal de Escuta Anônima",
+  "theme": "dark",
+  "vibe": "Reassuring, premium, highly secure, deeply anonymous. Awwwards-level craft with an emphasis on emotional safety and trust.",
+  "typography": {
+    "fonts": {
+      "headings": "'Outfit', sans-serif",
+      "body": "'DM Sans', sans-serif"
+    },
+    "scale": {
+      "h1": "text-5xl md:text-6xl+ tracking-tighter font-light leading-none",
+      "h2": "text-3xl md:text-4xl tracking-tight font-medium",
+      "h3": "text-xl md:text-2xl font-medium",
+      "body": "text-base leading-relaxed text-slate-300",
+      "labels": "text-xs tracking-[0.2em] uppercase font-semibold text-slate-400"
+    },
+    "instructions": "Use font-light for main hero headings to feel soft and unthreatening. Avoid aggressive bolding except for small uppercase labels."
+  },
+  "colors": {
+    "background": {
+      "base": "#0B111A",
+      "gradient_from": "#112236",
+      "gradient_via": "#15332C",
+      "gradient_to": "#0B111A",
+      "description": "A very soft, deep mesh gradient of navy-blue and green. The dark base ensures the user feels 'hidden' and safe, while the green implies healing and balance."
+    },
+    "text": {
+      "primary": "#F8FAFC",
+      "secondary": "#94A3B8",
+      "muted": "#64748B"
+    },
+    "accent": {
+      "primary": "#34D399",
+      "primary_hover": "#10B981",
+      "surface": "rgba(255, 255, 255, 0.04)",
+      "surface_border": "rgba(255, 255, 255, 0.08)"
+    }
+  },
+  "visual_enhancers": {
+    "surfaces": "Use the 'Crystal Glass' variant. Containers should be bg-white/5 with backdrop-blur-2xl and a delicate border-white/10 to separate them from the dark gradient background.",
+    "rounding": "CRITICAL: The user specifically requested highly stylized rounded text boxes. All inputs, textareas, and select triggers MUST use rounded-3xl or rounded-full with deep internal padding (e.g., px-6 py-4).",
+    "shadows": "Soft, diffuse ambient shadows to lift the glass cards off the background: shadow-[0_8px_32px_rgba(0,0,0,0.4)].",
+    "glows": "Active inputs and focused elements should have a very soft, diffuse mint-green glow: focus:ring-2 focus:ring-[#34D399]/30 focus:bg-white/10."
+  },
+  "layouts": {
+    "spacing_system": "Generous. Use p-8, p-12 for containers. The form should not feel cramped; space implies clarity and calmness.",
+    "hero": "Full viewport height (min-h-[80vh]) centered flex column, focusing entirely on the reassuring headline.",
+    "form_wizard": "A centered, narrow column (max-w-2xl) to keep focus intimate and reduced cognitive load.",
+    "review_dashboard": "Mode B: High Density Bento Grid. Keep reports highly scannable with clear status indicators.",
+    "manifesto": "Numbered chapters in a staggered horizontal/vertical layout, deeply padded, revealing on scroll."
+  },
+  "motion": {
+    "scrolling": "Implement Lenis for smooth, premium momentum scrolling.",
+    "hero_reveal": "Kinetic Hero: The main headline 'Você está seguro aqui.' must use a Framer Motion line-by-line or word-by-word masked reveal. It should feel slow and deliberate.",
+    "form_transitions": "When moving from Step 1 to Step 2, the previous step should fade out and slide up, and the new step should slide in from the bottom. Do NOT just snap instantly.",
+    "micro_interactions": "Inputs should smoothly transition their background color and border on focus. Buttons should have a subtle scale down (scale-95) on press."
+  },
+  "components": {
+    "inputs_and_textareas": {
+      "style": "bg-white/5 border border-white/10 text-white placeholder-white/30 backdrop-blur-md transition-all duration-300",
+      "rounding": "rounded-[2rem]",
+      "spacing": "px-6 py-4 text-base",
+      "focus": "focus:border-[#34D399]/50 focus:bg-white/10 outline-none focus:ring-4 focus:ring-[#34D399]/10"
+    },
+    "buttons": {
+      "primary": "rounded-full bg-[#34D399] text-[#042F2E] font-medium px-8 py-4 hover:bg-[#10B981] transition-all hover:scale-[1.02] active:scale-[0.98]",
+      "secondary": "rounded-full bg-white/10 text-white font-medium px-8 py-4 hover:bg-white/20 transition-all border border-white/5"
+    },
+    "dynamic_list": {
+      "description": "For the 'Accused' list in Step 2. Each added person should appear as a highly rounded 'pill' or inline card. The role dropdown and conditional 'Turma' input must be elegantly integrated inline."
+    },
+    "protocol_display": {
+      "style": "Massive text (text-5xl sm:text-7xl), tracking-[0.3em], font-mono, glowing softly. Center stage with a prominent 'Copy to Clipboard' interaction."
+    }
+  },
+  "media": {
+    "image_urls": {
+      "hero_background_texture": {
+        "url": "https://images.unsplash.com/photo-1655841439659-0afc60676b70?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1NzZ8MHwxfHNlYXJjaHwzfHxhYnN0cmFjdCUyMHNvZnQlMjBjYWxtJTIwd2F2ZXxlbnwwfHx8fDE3ODUwMzM5NTh8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Dark teal wavy shapes on black. Use this as a very low opacity (10-20%) background or mask for the hero section to provide an abstract, premium, calming texture."
+      }
+    }
+  },
+  "3d_libraries": {
+    "recommendation": "Do not use heavy 3D that could distract from the serious nature of the tool. Use soft CSS mesh gradients and subtle Framer Motion parallax for the background."
+  },
+  "accessibility": {
+    "contrast": "Ensure white text on the dark gradient passes WCAG AA.",
+    "focus_states": "Every stylized input MUST have an unmistakable focus ring for keyboard navigation.",
+    "screen_readers": "Use aria-labels for the dynamic add/remove accused buttons."
+  },
+  "instructions_to_main_agent": [
+    "CRITICAL: The tech stack uses standard .js files, NOT .tsx. Provide React code in .js format.",
+    "CRITICAL: The background MUST be a soft gradient of green and navy-blue. Implement this using Tailwind bg-gradient or a custom CSS radial mesh gradient on the body or main wrapper.",
+    "CRITICAL: The text inputs MUST be heavily rounded (rounded-3xl or rounded-full) and stylized with glassmorphism as per the user's explicit request.",
+    "The app has three main flows: Form Step 1, Form Step 2, Protocol Generation, and a separate Review/Admin Dashboard.",
+    "Ensure all interactive elements have data-testid attributes for testing.",
+    "Use Framer Motion for the Kinetic Hero text reveal and form step transitions.",
+    "Use Lenis for smooth scrolling.",
+    "Do NOT use transparent backgrounds for dropdown menus (Select Content); they must have a solid or heavily blurred background to remain readable."
+  ],
+  "UNIVERSAL GUIDELINES FOR MAIN AGENT": [
+    "You tend to converge toward generic, 'on distribution' outputs. Avoid this: make creative, distinctive frontends that surprise and delight.",
+    "Dark colors look good when used independently without gradients. DO NOT use dark colors as gradients, except for background mesh gradients where it's specifically requested.",
+    "Don't make generic centered layouts, simplistic gradients, and uniform styling.",
+    "Create depth through layered design elements with z-index hierarchy.",
+    "Use glass-morphism effects with backdrop filters (12-24px blur).",
+    "You MUST NOT apply universal transition. Eg: transition: all. This results in breaking transforms. Always add transitions for specific interactive elements.",
+    "You MUST NOT center align the app container, ie do not add .App { text-align: center; } in the css file. This disrupts the human natural reading flow of text.",
+    "Always use modern button styles like pill-shaped, or sharp button with interaction animations & color relevant to the app style.",
+    "NEVER: use AI assistant Emoji characters like 🤖🧠💭💡🔮🎯 etc for icons.",
+    "Every interaction needs micro-animations - hover states, transitions, parallax effects, and entrance animations. Static = dead.",
+    "Use 2-3x more spacing than feels comfortable. Cramped designs look cheap.",
+    "Prioritize using pre-existing components from src/components/ui when applicable.",
+    "Use sonner for toasts, located in /app/frontend/src/components/ui/sonner.js."
+  ]
+}
