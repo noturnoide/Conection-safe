@@ -1,0 +1,26 @@
+{
+  "summary": "Full first-finish smoke test for Canal de Escuta Anônima. Backend endpoints (POST /api/reports, GET /api/reports, GET /api/reports/{protocolo}) verified via curl. Frontend end-to-end flow validated: landing hero + navigation, two-step questionnaire with shadcn Select dropdowns, validation guards, redirect protection, dynamic denunciados add/remove, conditional turma-select on Aluno, submission producing ESC-XXXX-XXXX protocol, Consultar success + not-found, and /revisao listing. All 19 checks passed.",
+  "tested_scope": ["frontend", "backend", "integration"],
+  "passed": [
+    "Backend GET /api/ returns 200",
+    "Backend POST /api/reports creates report and returns protocol ESC-XXXX-XXXX",
+    "Landing page loads with hero 'Você está seguro aqui.'",
+    "start-report-btn navigates to /relatar; consultar-btn navigates to /consultar",
+    "Empty step1 submit blocked (toast, no navigation)",
+    "Direct nav to /relatar/detalhes without step1 redirects back to /relatar",
+    "All four step1 selects (tipo/localidade/vivencia/tempo) filled via shadcn Radix Select options",
+    "Valid step1 navigates to /relatar/detalhes",
+    "Empty detalhes submit blocked",
+    "add-denunciado-btn creates cargo-select-1; remove-denunciado-1 removes it",
+    "cargo=Aluno reveals turma-select-0; changing to Professor hides it",
+    "End-to-end submit produces ESC-XXXX-XXXX (ESC-WGTV-9VW7) and navigates to /protocolo",
+    "copy-protocol-btn present on Protocol page",
+    "Consultar with valid code renders report detail; invalid code shows 'não encontrado' toast",
+    "/revisao lists reports incl. newly created one, refresh-reports-btn present"
+  ],
+  "failed": [],
+  "action_items": [],
+  "success_rate": {"backend": "100%", "frontend": "100%"},
+  "retest_needed": false,
+  "full_testing_deferred": true
+}
