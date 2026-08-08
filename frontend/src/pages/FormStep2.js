@@ -19,7 +19,7 @@ const TURMAS = [
 export default function FormStep2() {
   const navigate = useNavigate();
   const [detalhes, setDetalhes] = useState("");
-  const [denunciados, setDenunciados] = useState([{ cargo: "", turma: "" }]);
+  const [denunciados, setDenunciados] = useState([{ cargo: "", turma: "", nome: "" }]);
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export default function FormStep2() {
   }, [navigate]);
 
   const addDenunciado = () =>
-    setDenunciados((d) => [...d, { cargo: "", turma: "" }]);
+    setDenunciados((d) => [...d, { cargo: "", turma: "", nome: "" }]);
 
   const removeDenunciado = (idx) =>
     setDenunciados((d) => d.filter((_, i) => i !== idx));
@@ -56,8 +56,12 @@ export default function FormStep2() {
       ...step1,
       detalhes: detalhes.trim(),
       denunciados: denunciados
-        .filter((d) => d.cargo)
-        .map((d) => ({ cargo: d.cargo, turma: d.cargo === "Aluno" ? d.turma || null : null })),
+        .filter((d) => d.cargo || (d.nome && d.nome.trim()))
+        .map((d) => ({
+          cargo: d.cargo,
+          turma: d.cargo === "Aluno" ? d.turma || null : null,
+          nome: d.nome && d.nome.trim() ? d.nome.trim() : null,
+        })),
     };
     try {
       setSubmitting(true);
@@ -143,6 +147,18 @@ export default function FormStep2() {
                         <X className="w-5 h-5" />
                       </button>
                     )}
+                    <label className="block mb-3 text-sm text-white/80">
+                      Indique o nome da pessoa envolvida <span className="text-white/40">(opcional)</span>
+                    </label>
+                    <input
+                      type="text"
+                      data-testid={`nome-input-${idx}`}
+                      value={d.nome}
+                      onChange={(e) => updateDenunciado(idx, "nome", e.target.value)}
+                      placeholder="Nome (opcional)"
+                      className="w-full rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-md px-6 py-4 text-base text-white placeholder:text-white/30 focus:outline-none focus:border-[#34D399]/50 focus:bg-white/10 focus:ring-4 focus:ring-[#34D399]/10 transition-colors duration-300 mb-5"
+                    />
+
                     <label className="block mb-3 text-sm text-white/80">
                       Indique o cargo da pessoa envolvida
                     </label>

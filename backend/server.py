@@ -32,6 +32,7 @@ api_router = APIRouter(prefix="/api")
 class Denunciado(BaseModel):
     cargo: str
     turma: Optional[str] = None
+    nome: Optional[str] = None
 
 
 class ReportCreate(BaseModel):

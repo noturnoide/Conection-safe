@@ -38,14 +38,14 @@ h1, h2, h3, h4, .font-head {
     font-family: 'Outfit', sans-serif;
 }
 
-/* Vivid green + pool-blue (azul-piscina) mesh gradient background */
+/* Lighter, vivid green + pool-blue mesh gradient background */
 .esc-mesh {
-    background-color: #04150E;
+    background-color: #0B2A1E;
     background-image:
-        radial-gradient(at 14% 16%, rgba(34, 197, 94, 0.45) 0px, transparent 55%),
-        radial-gradient(at 86% 18%, rgba(6, 182, 212, 0.42) 0px, transparent 52%),
-        radial-gradient(at 80% 86%, rgba(16, 185, 129, 0.40) 0px, transparent 55%),
-        radial-gradient(at 20% 90%, rgba(20, 184, 166, 0.38) 0px, transparent 52%);
+        radial-gradient(at 14% 16%, rgba(74, 222, 128, 0.55) 0px, transparent 55%),
+        radial-gradient(at 86% 18%, rgba(34, 211, 238, 0.48) 0px, transparent 52%),
+        radial-gradient(at 80% 86%, rgba(52, 211, 153, 0.55) 0px, transparent 55%),
+        radial-gradient(at 20% 90%, rgba(45, 212, 191, 0.48) 0px, transparent 52%);
 }
 
 /* Grain overlay */

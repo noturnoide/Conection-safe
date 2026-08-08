@@ -100,18 +100,6 @@ export default function Landing() {
         </motion.div>
       </section>
 
-      {/* Marquee */}
-      <div className="relative border-y border-white/10 py-6 overflow-hidden">
-        <div className="marquee-track">
-          {[...Array(2)].map((_, k) => (
-            <span key={k} className="font-head text-2xl md:text-3xl text-white/30 tracking-tight">
-              {"Sigilo · Respeito · Escuta · Segurança · Anonimato · Acolhimento · "}
-              {"Sigilo · Respeito · Escuta · Segurança · Anonimato · Acolhimento · "}
-            </span>
-          ))}
-        </div>
-      </div>
-
       {/* Manifesto chapters */}
       <section className="max-w-6xl mx-auto px-6 py-24 md:py-32">
         <div className="grid md:grid-cols-3 gap-6">

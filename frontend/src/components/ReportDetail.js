@@ -48,15 +48,20 @@ export default function ReportDetail({ report }) {
             Pessoas envolvidas
           </p>
           <div className="flex flex-wrap gap-2">
-            {report.denunciados.map((d, i) => (
-              <span
-                key={i}
-                className="inline-flex items-center gap-2 rounded-full bg-[#34D399]/10 border border-[#34D399]/20 text-[#a7f3d0] text-sm px-4 py-2"
-              >
-                {d.cargo}
-                {d.cargo === "Aluno" && d.turma ? ` · ${d.turma}` : ""}
-              </span>
-            ))}
+            {report.denunciados.map((d, i) => {
+              const parts = [];
+              if (d.nome) parts.push(d.nome);
+              if (d.cargo) parts.push(d.cargo);
+              if (d.cargo === "Aluno" && d.turma) parts.push(d.turma);
+              return (
+                <span
+                  key={i}
+                  className="inline-flex items-center gap-2 rounded-full bg-[#34D399]/10 border border-[#34D399]/20 text-[#a7f3d0] text-sm px-4 py-2"
+                >
+                  {parts.join(" · ")}
+                </span>
+              );
+            })}
           </div>
         </div>
       )}

@@ -1,10 +1,18 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, ArrowLeft } from "lucide-react";
+import { ArrowRight, ArrowLeft, Info } from "lucide-react";
 import { toast } from "sonner";
 import Shell from "../components/Shell";
 import StyledSelect from "../components/StyledSelect";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from "../components/ui/dialog";
 
 const FIELDS = [
   {
@@ -34,6 +42,30 @@ const FIELDS = [
   },
 ];
 
+const TIPO_DESCRIPTIONS = {
+  "Assédio moral":
+    "*Exposição repetida ou sistemática a situações humilhantes, hostis ou degradantes*, como ofensas, ameaças, ridicularização, exclusão ou perseguição. *Racismo, homofobia, transfobia, capacitismo e outras formas de discriminação também podem ser relatados*, mesmo se ocorridas de forma isolada.",
+  "Assédio sexual":
+    "Comportamentos, comentários, mensagens ou abordagens *indesejadas de caráter ou conotação sexual*, como comentários sobre o corpo, propostas, toques sem consentimento ou exposição a conteúdo sexual. *Não é necessário contato físico ou repetição.*",
+  Cyberbullying:
+    "Humilhação, intimidação, perseguição ou exposição de alguém por *meios digitais, como redes sociais e aplicativos*, incluindo insultos, ameaças, boatos, divulgação de imagens sem consentimento ou perfis falsos.",
+};
+
+const OBSERVATION =
+  "*Não sabe se a situação se encaixa? Relate mesmo assim.* O canal também acolhe casos de discriminação, violência, constrangimento ou outras situações que tenham causado desconforto ou sofrimento.";
+
+// Splits *bold* segments into <strong>.
+const renderBold = (text) =>
+  text.split(/(\*[^*]+\*)/g).map((part, i) =>
+    part.startsWith("*") && part.endsWith("*") && part.length > 2 ? (
+      <strong key={i} className="text-white font-semibold">
+        {part.slice(1, -1)}
+      </strong>
+    ) : (
+      <span key={i}>{part}</span>
+    )
+  );
+
 export default function FormStep1() {
   const navigate = useNavigate();
   const saved = JSON.parse(sessionStorage.getItem("esc_step1") || "{}");
@@ -43,8 +75,14 @@ export default function FormStep1() {
     vivencia: saved.vivencia || "",
     tempo: saved.tempo || "",
   });
+  const [dialogTipo, setDialogTipo] = useState(null);
 
   const update = (key, val) => setForm((f) => ({ ...f, [key]: val }));
+
+  const handleTipoChange = (v) => {
+    update("tipo", v);
+    if (TIPO_DESCRIPTIONS[v]) setDialogTipo(v);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -99,9 +137,23 @@ export default function FormStep1() {
                 <StyledSelect
                   testid={`select-${field.key}`}
                   value={form[field.key]}
-                  onValueChange={(v) => update(field.key, v)}
+                  onValueChange={(v) =>
+                    field.key === "tipo" ? handleTipoChange(v) : update(field.key, v)
+                  }
                   options={field.options}
                 />
+              )}
+
+              {field.key === "tipo" && (
+                <div
+                  data-testid="tipo-observation"
+                  className="mt-4 flex gap-3 rounded-2xl border border-[#34D399]/25 bg-[#34D399]/[0.06] backdrop-blur-md px-5 py-4"
+                >
+                  <Info className="w-5 h-5 text-[#34D399] shrink-0 mt-0.5" />
+                  <p className="text-sm text-slate-200 leading-relaxed">
+                    {renderBold(OBSERVATION)}
+                  </p>
+                </div>
               )}
             </motion.div>
           ))}
@@ -116,6 +168,31 @@ export default function FormStep1() {
           </button>
         </form>
       </section>
+
+      <Dialog open={!!dialogTipo} onOpenChange={(o) => !o && setDialogTipo(null)}>
+        <DialogContent
+          data-testid="tipo-dialog"
+          className="rounded-[2rem] border border-white/10 bg-[#0E1B2A]/95 backdrop-blur-2xl text-white max-w-lg"
+        >
+          <DialogHeader>
+            <DialogTitle className="font-head text-2xl text-white">
+              {dialogTipo}
+            </DialogTitle>
+            <DialogDescription className="text-slate-300 leading-relaxed text-base mt-2">
+              {dialogTipo && renderBold(TIPO_DESCRIPTIONS[dialogTipo])}
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <button
+              data-testid="tipo-dialog-confirm"
+              onClick={() => setDialogTipo(null)}
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#34D399] text-[#042F2E] font-medium px-6 py-3 hover:bg-[#10B981] transition-colors active:scale-[0.98]"
+            >
+              Entendi, continuar
+            </button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </Shell>
   );
 }
