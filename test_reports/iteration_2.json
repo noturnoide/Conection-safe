@@ -1,0 +1,25 @@
+{
+  "summary": "Regression + UI-refresh verification for Canal de Escuta Anônima. Backend 7/7 pytest passing. Frontend E2E: landing → step1 (tipo dialog for Assédio moral, tipo-observation visible, Cyberbullying selected, localidade text input, vivencia, tempo) → step1-next → step2 (detalhes, cargo=Aluno reveals turma-select-0=2B, nome) → submit → /protocolo with ESC-XXXX-XXXX code + copy-protocol-btn. Consultar valid renders detail, invalid shows 'não encontrado' toast. Revisão lists new report and refresh works. Redirect protection from /relatar/detalhes to /relatar validated. Blue+white diagonal gradient and dark navy pill buttons render correctly on landing.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/backend_test.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "Note: The review request referenced testids 'consultar-input' and 'consultar-submit-btn' for Consultar page, but actual testids are 'protocol-input' and 'search-protocol-btn'. Consider aligning naming, or updating the review-request contract. Behavior itself is correct."
+  ],
+  "critical_code_review_comments": [
+    "backend/server.py uses deprecated FastAPI @app.on_event('shutdown'); should migrate to lifespan handlers (non-blocking)."
+  ],
+  "updated_files": ["/app/backend/tests/backend_test.py"],
+  "success_rate": {"backend": "100%", "frontend": "100%"},
+  "seed_data_creation": "Two test reports created via API/UI with TEST_ prefix in detalhes and denunciado nome. Protocol ESC-Z0OB-A9Z2 used for consultar/revisao verification.",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "vivencia options are 'Sim, eu vivenciei' / 'Não, soube de outra pessoa'; tempo options: Hoje/Ontem/Semana passada/Mês passado; turma options include '1A'..'3D' plus 'Não consigo informar'. Every tipo selection opens tipo-dialog which must be dismissed via [data-testid=tipo-dialog-confirm] before further interactions. Consultar page testids: protocol-input, search-protocol-btn (NOT consultar-input/consultar-submit-btn)."
+}

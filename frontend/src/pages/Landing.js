@@ -73,8 +73,8 @@ export default function Landing() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9, duration: 0.7 }}
-          className="mt-4 fs-5 lh-base"
-          style={{ maxWidth: "36rem", color: "#334166" }}
+          className="fs-5 lh-base"
+          style={{ maxWidth: "36rem", color: "#334166", marginTop: "2rem" }}
         >
           Responda ao questionário abaixo com total sigilo. Este é um espaço seguro
           para relatar situações difíceis — sem nome, sem julgamento, sem exposição.
@@ -84,7 +84,8 @@ export default function Landing() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.1, duration: 0.7 }}
-          className="mt-5 d-flex flex-column flex-sm-row gap-3"
+          className="d-flex flex-column flex-sm-row"
+          style={{ marginTop: "3rem", gap: "1rem" }}
         >
           <button
             data-testid="start-report-btn"

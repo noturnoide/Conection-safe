@@ -28,21 +28,21 @@ export default function Review() {
 
   return (
     <Shell testid="review-page">
-      <section className="container px-6 py-5" style={{ maxWidth: "52rem" }}>
-        <div className="d-flex align-items-end justify-content-between mb-2">
-          <h2 className="fs-1 fw-medium mb-0" style={{ color: "#0B1E3F", letterSpacing: "-0.02em" }}>
+      <section className="container px-6 py-5" style={{ maxWidth: "52rem", paddingTop: "3rem", paddingBottom: "4rem" }}>
+        <div className="d-flex align-items-end justify-content-between mb-3 flex-wrap gap-3">
+          <h2 className="fs-1 fw-medium mb-0" style={{ color: "#0B1E3F", letterSpacing: "-0.02em", lineHeight: 1.15 }}>
             Revisão de relatos
           </h2>
           <button
             data-testid="refresh-reports-btn"
             onClick={load}
-            className="btn btn-sm rounded-pill d-inline-flex align-items-center gap-1"
+            className="btn btn-sm rounded-pill d-inline-flex align-items-center gap-2 px-3 py-2"
             style={{ backgroundColor: "#F1F4FA", color: "#0B1E3F", border: "1px solid rgba(11,30,63,0.10)" }}
           >
             <RefreshCw className="w-4 h-4" /> Atualizar
           </button>
         </div>
-        <p className="mb-5" style={{ color: "#6B7A99" }}>
+        <p className="mb-5 fs-6" style={{ color: "#6B7A99" }}>
           Todos os relatos recebidos, com seus protocolos anônimos, para fins de revisão.
         </p>
 

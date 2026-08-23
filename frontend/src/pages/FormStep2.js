@@ -85,30 +85,30 @@ export default function FormStep2() {
 
   return (
     <Shell testid="form-step2-page">
-      <section className="container px-6 py-5" style={{ maxWidth: "42rem" }}>
+      <section className="container px-6 py-5" style={{ maxWidth: "42rem", paddingTop: "3rem", paddingBottom: "4rem" }}>
         <button
           data-testid="back-step1-btn"
           onClick={() => navigate("/relatar")}
-          className="btn btn-link p-0 small text-decoration-none d-inline-flex align-items-center gap-1 mb-4"
+          className="btn btn-link p-0 small text-decoration-none d-inline-flex align-items-center gap-2 mb-5"
           style={{ color: "#6B7A99" }}
         >
           <ArrowLeft className="w-4 h-4" /> Voltar à etapa 1
         </button>
 
-        <div className="small text-uppercase fw-semibold mb-2" style={{ letterSpacing: "0.3em", color: "#1E3A8A" }}>
+        <div className="small text-uppercase fw-semibold mb-3" style={{ letterSpacing: "0.3em", color: "#1E3A8A" }}>
           Etapa 2 de 2
         </div>
-        <h2 className="fs-1 fw-medium mb-2" style={{ color: "#0B1E3F", letterSpacing: "-0.02em" }}>
+        <h2 className="fs-1 fw-medium mb-3" style={{ color: "#0B1E3F", letterSpacing: "-0.02em", lineHeight: 1.15 }}>
           Detalhes do relato
         </h2>
-        <p className="mb-5" style={{ color: "#6B7A99" }}>Quanto mais detalhes, melhor poderemos ajudar. Continua anônimo.</p>
+        <p className="mb-5 fs-6" style={{ color: "#6B7A99" }}>Quanto mais detalhes, melhor poderemos ajudar. Continua anônimo.</p>
 
         <form onSubmit={handleSubmit}>
           <div className="mb-5">
-            <label className="form-label fw-medium mb-1 d-block" style={{ color: "#0B1E3F" }}>
+            <label className="form-label fw-medium mb-2 d-block" style={{ color: "#0B1E3F", fontSize: "1rem" }}>
               Nos conte o que aconteceu e lembre-se de informar todos os detalhes
             </label>
-            <p className="small mb-2" style={{ color: "#6B7A99" }}>Escreva livremente.</p>
+            <p className="small mb-3" style={{ color: "#6B7A99" }}>Escreva livremente.</p>
             <textarea
               data-testid="detalhes-textarea"
               value={detalhes}
@@ -120,14 +120,14 @@ export default function FormStep2() {
             />
           </div>
 
-          <div className="mb-4">
-            <div className="d-flex align-items-center justify-content-between mb-3">
-              <label className="form-label fw-medium mb-0" style={{ color: "#0B1E3F" }}>Pessoas envolvidas</label>
+          <div className="mb-5">
+            <div className="d-flex align-items-center justify-content-between mb-4">
+              <label className="form-label fw-medium mb-0" style={{ color: "#0B1E3F", fontSize: "1rem" }}>Pessoas envolvidas</label>
               <button
                 type="button"
                 data-testid="add-denunciado-btn"
                 onClick={addDenunciado}
-                className="btn btn-sm rounded-pill d-inline-flex align-items-center gap-1"
+                className="btn btn-sm rounded-pill d-inline-flex align-items-center gap-2 px-3 py-2"
                 style={{ backgroundColor: "#F1F4FA", color: "#0B1E3F", border: "1px solid rgba(11,30,63,0.10)" }}
               >
                 <Plus className="w-4 h-4" /> Adicionar
@@ -145,11 +145,12 @@ export default function FormStep2() {
                     exit={{ opacity: 0, scale: 0.96 }}
                     transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                     data-testid={`denunciado-card-${idx}`}
-                    className="bg-white p-4 position-relative mb-3"
+                    className="bg-white position-relative mb-4"
                     style={{
                       border: "1px solid rgba(11,30,63,0.08)",
                       borderRadius: "1.75rem",
                       boxShadow: "0 10px 40px rgba(11,30,63,0.06)",
+                      padding: "1.75rem",
                     }}
                   >
                     {denunciados.length > 1 && (
@@ -173,7 +174,7 @@ export default function FormStep2() {
                       value={d.nome}
                       onChange={(e) => updateDenunciado(idx, "nome", e.target.value)}
                       placeholder="Nome (opcional)"
-                      className="form-control shadow-sm mb-3"
+                      className="form-control shadow-sm mb-4"
                       style={inputStyle}
                     />
 
@@ -196,7 +197,7 @@ export default function FormStep2() {
                           transition={{ duration: 0.35 }}
                           className="overflow-hidden"
                         >
-                          <label className="form-label small d-block mb-2 mt-3" style={{ color: "#334166" }}>
+                          <label className="form-label small d-block mb-2 mt-4" style={{ color: "#334166" }}>
                             Qual a turma do aluno?
                           </label>
                           <StyledSelect
@@ -218,7 +219,7 @@ export default function FormStep2() {
             type="submit"
             data-testid="submit-report-btn"
             disabled={submitting}
-            className="btn rounded-pill px-4 py-3 fw-medium d-inline-flex align-items-center gap-2 mt-3"
+            className="btn rounded-pill px-4 py-3 fw-medium d-inline-flex align-items-center gap-2 mt-4"
             style={{ backgroundColor: "#0B1E3F", color: "#fff", border: "none", opacity: submitting ? 0.6 : 1 }}
             onMouseEnter={(e) => !submitting && (e.currentTarget.style.backgroundColor = "#142A55")}
             onMouseLeave={(e) => !submitting && (e.currentTarget.style.backgroundColor = "#0B1E3F")}

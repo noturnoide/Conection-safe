@@ -39,11 +39,11 @@ export default function Consultar() {
 
   return (
     <Shell testid="consultar-page">
-      <section className="container px-6 py-5" style={{ maxWidth: "42rem" }}>
-        <h2 className="fs-1 fw-medium mb-2" style={{ color: "#0B1E3F", letterSpacing: "-0.02em" }}>
+      <section className="container px-6 py-5" style={{ maxWidth: "42rem", paddingTop: "3rem", paddingBottom: "4rem" }}>
+        <h2 className="fs-1 fw-medium mb-3" style={{ color: "#0B1E3F", letterSpacing: "-0.02em", lineHeight: 1.15 }}>
           Consultar protocolo
         </h2>
-        <p className="mb-5" style={{ color: "#6B7A99" }}>
+        <p className="mb-5 fs-6" style={{ color: "#6B7A99" }}>
           Digite o código anônimo que você recebeu ao enviar o relato.
         </p>
 

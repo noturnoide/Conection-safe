@@ -96,23 +96,23 @@ export default function FormStep1() {
 
   return (
     <Shell testid="form-step1-page">
-      <section className="container px-6 py-5" style={{ maxWidth: "42rem" }}>
+      <section className="container px-6 py-5" style={{ maxWidth: "42rem", paddingTop: "3rem", paddingBottom: "4rem" }}>
         <button
           data-testid="back-home-btn"
           onClick={() => navigate("/")}
-          className="btn btn-link p-0 small text-decoration-none d-inline-flex align-items-center gap-1 mb-4"
+          className="btn btn-link p-0 small text-decoration-none d-inline-flex align-items-center gap-2 mb-5"
           style={{ color: "#6B7A99" }}
         >
           <ArrowLeft className="w-4 h-4" /> Voltar
         </button>
 
-        <div className="small text-uppercase fw-semibold mb-2" style={{ letterSpacing: "0.3em", color: "#1E3A8A" }}>
+        <div className="small text-uppercase fw-semibold mb-3" style={{ letterSpacing: "0.3em", color: "#1E3A8A" }}>
           Etapa 1 de 2
         </div>
-        <h2 className="fs-1 fw-medium mb-2" style={{ color: "var(--esc-ink)", letterSpacing: "-0.02em" }}>
+        <h2 className="fs-1 fw-medium mb-3" style={{ color: "var(--esc-ink)", letterSpacing: "-0.02em", lineHeight: 1.15 }}>
           Sobre a situação
         </h2>
-        <p className="mb-5" style={{ color: "#6B7A99" }}>Responda com sigilo total. Nada aqui identifica você.</p>
+        <p className="mb-5 fs-6" style={{ color: "#6B7A99" }}>Responda com sigilo total. Nada aqui identifica você.</p>
 
         <form onSubmit={handleSubmit}>
           {FIELDS.map((field, i) => (
@@ -121,10 +121,10 @@ export default function FormStep1() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.08, duration: 0.5 }}
-              className="mb-4"
+              className="mb-5"
             >
-              <label className="form-label fw-medium mb-1 d-block" style={{ color: "var(--esc-ink)" }}>{field.label}</label>
-              <p className="small mb-2" style={{ color: "#6B7A99" }}>{field.hint}</p>
+              <label className="form-label fw-medium mb-2 d-block" style={{ color: "var(--esc-ink)", fontSize: "1rem" }}>{field.label}</label>
+              <p className="small mb-3" style={{ color: "#6B7A99" }}>{field.hint}</p>
               {field.type === "text" ? (
                 <input
                   type="text"
@@ -156,7 +156,7 @@ export default function FormStep1() {
               {field.key === "tipo" && (
                 <div
                   data-testid="tipo-observation"
-                  className="d-flex gap-2 rounded-4 p-3 mt-3"
+                  className="d-flex gap-3 p-4 mt-4"
                   style={{
                     border: "1px solid rgba(30,58,138,0.20)",
                     backgroundColor: "rgba(30,58,138,0.05)",
@@ -175,7 +175,7 @@ export default function FormStep1() {
           <button
             type="submit"
             data-testid="step1-next-btn"
-            className="btn rounded-pill px-4 py-3 fw-medium d-inline-flex align-items-center gap-2 mt-3"
+            className="btn rounded-pill px-4 py-3 fw-medium d-inline-flex align-items-center gap-2 mt-4"
             style={{ backgroundColor: "#0B1E3F", color: "#fff", border: "none" }}
             onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#142A55")}
             onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#0B1E3F")}
