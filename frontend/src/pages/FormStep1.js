@@ -54,11 +54,10 @@ const TIPO_DESCRIPTIONS = {
 const OBSERVATION =
   "*Não sabe se a situação se encaixa? Relate mesmo assim.* O canal também acolhe casos de discriminação, violência, constrangimento ou outras situações que tenham causado desconforto ou sofrimento.";
 
-// Splits *bold* segments into <strong>.
 const renderBold = (text) =>
   text.split(/(\*[^*]+\*)/g).map((part, i) =>
     part.startsWith("*") && part.endsWith("*") && part.length > 2 ? (
-      <strong key={i} className="text-white font-semibold">
+      <strong key={i} className="fw-semibold" style={{ color: "#0B1E3F" }}>
         {part.slice(1, -1)}
       </strong>
     ) : (
@@ -97,33 +96,35 @@ export default function FormStep1() {
 
   return (
     <Shell testid="form-step1-page">
-      <section className="max-w-2xl mx-auto px-6 py-12 md:py-16">
+      <section className="container px-6 py-5" style={{ maxWidth: "42rem" }}>
         <button
           data-testid="back-home-btn"
           onClick={() => navigate("/")}
-          className="inline-flex items-center gap-2 text-white/50 hover:text-white text-sm mb-8 transition-colors"
+          className="btn btn-link p-0 small text-decoration-none d-inline-flex align-items-center gap-1 mb-4"
+          style={{ color: "#6B7A99" }}
         >
           <ArrowLeft className="w-4 h-4" /> Voltar
         </button>
 
-        <div className="mb-2 text-xs tracking-[0.3em] uppercase font-semibold text-[#34D399]">
+        <div className="small text-uppercase fw-semibold mb-2" style={{ letterSpacing: "0.3em", color: "#1E3A8A" }}>
           Etapa 1 de 2
         </div>
-        <h2 className="font-head text-3xl md:text-4xl font-medium tracking-tight text-white mb-3">
+        <h2 className="fs-1 fw-medium mb-2" style={{ color: "var(--esc-ink)", letterSpacing: "-0.02em" }}>
           Sobre a situação
         </h2>
-        <p className="text-slate-400 mb-10">Responda com sigilo total. Nada aqui identifica você.</p>
+        <p className="mb-5" style={{ color: "#6B7A99" }}>Responda com sigilo total. Nada aqui identifica você.</p>
 
-        <form onSubmit={handleSubmit} className="space-y-8">
+        <form onSubmit={handleSubmit}>
           {FIELDS.map((field, i) => (
             <motion.div
               key={field.key}
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.08, duration: 0.5 }}
+              className="mb-4"
             >
-              <label className="block mb-1 font-medium text-white">{field.label}</label>
-              <p className="text-xs text-white/40 mb-3">{field.hint}</p>
+              <label className="form-label fw-medium mb-1 d-block" style={{ color: "var(--esc-ink)" }}>{field.label}</label>
+              <p className="small mb-2" style={{ color: "#6B7A99" }}>{field.hint}</p>
               {field.type === "text" ? (
                 <input
                   type="text"
@@ -131,7 +132,15 @@ export default function FormStep1() {
                   value={form[field.key]}
                   onChange={(e) => update(field.key, e.target.value)}
                   placeholder={field.placeholder}
-                  className="w-full rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-md px-6 py-4 text-base text-white placeholder:text-white/30 focus:outline-none focus:border-[#34D399]/50 focus:bg-white/10 focus:ring-4 focus:ring-[#34D399]/10 transition-colors duration-300"
+                  className="form-control shadow-sm"
+                  style={{
+                    borderRadius: "2rem",
+                    padding: "1rem 1.5rem",
+                    fontSize: "1rem",
+                    border: "1px solid rgba(11,30,63,0.10)",
+                    color: "var(--esc-ink)",
+                    backgroundColor: "#fff",
+                  }}
                 />
               ) : (
                 <StyledSelect
@@ -147,10 +156,15 @@ export default function FormStep1() {
               {field.key === "tipo" && (
                 <div
                   data-testid="tipo-observation"
-                  className="mt-4 flex gap-3 rounded-2xl border border-[#34D399]/25 bg-[#34D399]/[0.06] backdrop-blur-md px-5 py-4"
+                  className="d-flex gap-2 rounded-4 p-3 mt-3"
+                  style={{
+                    border: "1px solid rgba(30,58,138,0.20)",
+                    backgroundColor: "rgba(30,58,138,0.05)",
+                    borderRadius: "1.25rem",
+                  }}
                 >
-                  <Info className="w-5 h-5 text-[#34D399] shrink-0 mt-0.5" />
-                  <p className="text-sm text-slate-200 leading-relaxed">
+                  <Info className="w-5 h-5 flex-shrink-0 mt-1" style={{ color: "#1E3A8A" }} />
+                  <p className="mb-0 small lh-base" style={{ color: "#334166" }}>
                     {renderBold(OBSERVATION)}
                   </p>
                 </div>
@@ -161,10 +175,13 @@ export default function FormStep1() {
           <button
             type="submit"
             data-testid="step1-next-btn"
-            className="group inline-flex items-center justify-center gap-3 rounded-full bg-[#34D399] text-[#042F2E] font-medium px-8 py-4 hover:bg-[#10B981] transition-colors active:scale-[0.98]"
+            className="btn rounded-pill px-4 py-3 fw-medium d-inline-flex align-items-center gap-2 mt-3"
+            style={{ backgroundColor: "#0B1E3F", color: "#fff", border: "none" }}
+            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#142A55")}
+            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#0B1E3F")}
           >
             Continuar
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="w-5 h-5" />
           </button>
         </form>
       </section>
@@ -172,13 +189,19 @@ export default function FormStep1() {
       <Dialog open={!!dialogTipo} onOpenChange={(o) => !o && setDialogTipo(null)}>
         <DialogContent
           data-testid="tipo-dialog"
-          className="rounded-[2rem] border border-white/10 bg-[#0E1B2A]/95 backdrop-blur-2xl text-white max-w-lg"
+          className="rounded-4 bg-white"
+          style={{
+            border: "1px solid rgba(11,30,63,0.10)",
+            color: "var(--esc-ink)",
+            maxWidth: "32rem",
+            borderRadius: "1.75rem",
+          }}
         >
           <DialogHeader>
-            <DialogTitle className="font-head text-2xl text-white">
+            <DialogTitle className="fs-3 fw-medium" style={{ color: "var(--esc-ink)" }}>
               {dialogTipo}
             </DialogTitle>
-            <DialogDescription className="text-slate-300 leading-relaxed text-base mt-2">
+            <DialogDescription className="fs-6 lh-base mt-2" style={{ color: "#334166" }}>
               {dialogTipo && renderBold(TIPO_DESCRIPTIONS[dialogTipo])}
             </DialogDescription>
           </DialogHeader>
@@ -186,7 +209,8 @@ export default function FormStep1() {
             <button
               data-testid="tipo-dialog-confirm"
               onClick={() => setDialogTipo(null)}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#34D399] text-[#042F2E] font-medium px-6 py-3 hover:bg-[#10B981] transition-colors active:scale-[0.98]"
+              className="btn rounded-pill px-4 py-2 fw-medium"
+              style={{ backgroundColor: "#0B1E3F", color: "#fff", border: "none" }}
             >
               Entendi, continuar
             </button>

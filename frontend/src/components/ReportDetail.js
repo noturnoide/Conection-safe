@@ -14,40 +14,45 @@ const formatDate = (iso) => {
   }
 };
 
-// Reusable detailed view of a single anonymous report.
 export default function ReportDetail({ report }) {
   return (
     <div
       data-testid={`report-detail-${report.protocolo}`}
-      className="rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-2xl p-8 shadow-[0_8px_32px_rgba(0,0,0,0.4)]"
+      className="bg-white p-4"
+      style={{
+        border: "1px solid rgba(11,30,63,0.08)",
+        borderRadius: "1.75rem",
+        boxShadow: "0 10px 40px rgba(11,30,63,0.06)",
+        padding: "2rem",
+      }}
     >
-      <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
-        <span className="font-mono text-lg tracking-[0.15em] text-[#34D399]">
+      <div className="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-4">
+        <span style={{ fontFamily: "'Roboto Mono', monospace", fontSize: "1.125rem", letterSpacing: "0.15em", color: "#1E3A8A" }}>
           {report.protocolo}
         </span>
-        <span className="text-xs text-white/40">{formatDate(report.created_at)}</span>
+        <span className="small" style={{ color: "#94A3B8" }}>{formatDate(report.created_at)}</span>
       </div>
 
-      <div className="grid sm:grid-cols-2 gap-4 mb-6">
-        <Info icon={FileText} label="Tipo de situação" value={report.tipo} />
-        <Info icon={MapPin} label="Localidade" value={report.localidade} />
-        <Info icon={User} label="Vivência" value={report.vivencia} />
-        <Info icon={Clock} label="Quando ocorreu" value={report.tempo} />
+      <div className="row g-3 mb-4">
+        <div className="col-sm-6"><Info icon={FileText} label="Tipo de situação" value={report.tipo} /></div>
+        <div className="col-sm-6"><Info icon={MapPin} label="Localidade" value={report.localidade} /></div>
+        <div className="col-sm-6"><Info icon={User} label="Vivência" value={report.vivencia} /></div>
+        <div className="col-sm-6"><Info icon={Clock} label="Quando ocorreu" value={report.tempo} /></div>
       </div>
 
-      <div className="mb-6">
-        <p className="text-xs tracking-[0.2em] uppercase font-semibold text-white/40 mb-2">
+      <div className="mb-4">
+        <p className="small text-uppercase fw-semibold mb-2" style={{ letterSpacing: "0.2em", color: "#6B7A99" }}>
           Detalhes
         </p>
-        <p className="text-slate-200 leading-relaxed whitespace-pre-wrap">{report.detalhes}</p>
+        <p className="mb-0 lh-base" style={{ color: "#0B1E3F", whiteSpace: "pre-wrap" }}>{report.detalhes}</p>
       </div>
 
       {report.denunciados?.length > 0 && (
         <div>
-          <p className="text-xs tracking-[0.2em] uppercase font-semibold text-white/40 mb-3">
+          <p className="small text-uppercase fw-semibold mb-3" style={{ letterSpacing: "0.2em", color: "#6B7A99" }}>
             Pessoas envolvidas
           </p>
-          <div className="flex flex-wrap gap-2">
+          <div className="d-flex flex-wrap gap-2">
             {report.denunciados.map((d, i) => {
               const parts = [];
               if (d.nome) parts.push(d.nome);
@@ -56,7 +61,12 @@ export default function ReportDetail({ report }) {
               return (
                 <span
                   key={i}
-                  className="inline-flex items-center gap-2 rounded-full bg-[#34D399]/10 border border-[#34D399]/20 text-[#a7f3d0] text-sm px-4 py-2"
+                  className="rounded-pill px-3 py-2 small"
+                  style={{
+                    backgroundColor: "rgba(30,58,138,0.08)",
+                    border: "1px solid rgba(30,58,138,0.20)",
+                    color: "#1E3A8A",
+                  }}
                 >
                   {parts.join(" · ")}
                 </span>
@@ -70,10 +80,17 @@ export default function ReportDetail({ report }) {
 }
 
 const Info = ({ icon: Icon, label, value }) => (
-  <div className="rounded-2xl bg-white/[0.03] border border-white/5 p-4">
-    <div className="flex items-center gap-2 text-white/40 text-xs uppercase tracking-wider mb-1">
-      <Icon className="w-3.5 h-3.5" /> {label}
+  <div
+    className="p-3"
+    style={{
+      backgroundColor: "#F7F9FD",
+      border: "1px solid rgba(11,30,63,0.06)",
+      borderRadius: "1rem",
+    }}
+  >
+    <div className="d-flex align-items-center gap-1 small text-uppercase mb-1" style={{ color: "#6B7A99", letterSpacing: "0.08em" }}>
+      <Icon className="w-3 h-3" /> {label}
     </div>
-    <p className="text-white">{value}</p>
+    <p className="mb-0" style={{ color: "#0B1E3F" }}>{value}</p>
   </div>
 );

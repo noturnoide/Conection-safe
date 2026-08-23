@@ -29,21 +29,23 @@ export default function Protocol() {
 
   return (
     <Shell testid="protocol-page">
-      <section className="max-w-2xl mx-auto px-6 py-16 md:py-24 text-center flex flex-col items-center">
+      <section className="container px-6 py-5 text-center d-flex flex-column align-items-center" style={{ maxWidth: "42rem", paddingTop: "4rem", paddingBottom: "4rem" }}>
         <motion.div
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ type: "spring", stiffness: 200, damping: 18 }}
-          className="w-20 h-20 rounded-full bg-[#34D399]/15 border border-[#34D399]/30 flex items-center justify-center mb-8"
+          className="rounded-circle d-flex align-items-center justify-content-center mb-4"
+          style={{ width: "5rem", height: "5rem", backgroundColor: "rgba(30,58,138,0.10)", border: "1px solid rgba(30,58,138,0.25)" }}
         >
-          <ShieldCheck className="w-9 h-9 text-[#34D399]" />
+          <ShieldCheck className="w-9 h-9" style={{ color: "#1E3A8A" }} />
         </motion.div>
 
         <motion.h2
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15 }}
-          className="font-head text-3xl md:text-4xl font-medium tracking-tight text-white mb-4"
+          className="fs-1 fw-medium mb-3"
+          style={{ color: "#0B1E3F", letterSpacing: "-0.02em" }}
         >
           Obrigado por confiar em nós.
         </motion.h2>
@@ -51,7 +53,8 @@ export default function Protocol() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.25 }}
-          className="text-slate-300 max-w-md leading-relaxed mb-12"
+          className="lh-base mb-5"
+          style={{ maxWidth: "30rem", color: "#334166" }}
         >
           Sua mensagem foi registrada de forma segura e anônima. Guarde o protocolo
           abaixo para acompanhar seu relato depois.
@@ -61,24 +64,37 @@ export default function Protocol() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.35 }}
-          className="w-full rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-2xl p-8 md:p-10 shadow-[0_8px_32px_rgba(0,0,0,0.4)]"
+          className="w-100 bg-white p-4"
+          style={{
+            border: "1px solid rgba(11,30,63,0.08)",
+            borderRadius: "1.75rem",
+            boxShadow: "0 10px 40px rgba(11,30,63,0.10)",
+            padding: "2.5rem",
+          }}
         >
-          <p className="text-xs tracking-[0.3em] uppercase font-semibold text-white/40 mb-5">
+          <p className="small text-uppercase fw-semibold mb-3" style={{ letterSpacing: "0.3em", color: "#6B7A99" }}>
             Seu protocolo anônimo
           </p>
           <div
             data-testid="protocol-code"
-            className="font-mono text-3xl sm:text-5xl tracking-[0.15em] text-[#34D399] mb-8 break-all"
-            style={{ textShadow: "0 0 30px rgba(52,211,153,0.35)" }}
+            className="mb-4"
+            style={{
+              fontFamily: "'Roboto Mono', monospace",
+              fontSize: "clamp(1.75rem, 5vw, 3rem)",
+              letterSpacing: "0.15em",
+              color: "#1E3A8A",
+              wordBreak: "break-all",
+            }}
           >
             {protocolo}
           </div>
           <button
             data-testid="copy-protocol-btn"
             onClick={copy}
-            className="inline-flex items-center gap-2 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-white px-6 py-3 transition-colors"
+            className="btn rounded-pill px-4 py-2 d-inline-flex align-items-center gap-2"
+            style={{ backgroundColor: "#F1F4FA", color: "#0B1E3F", border: "1px solid rgba(11,30,63,0.10)" }}
           >
-            {copied ? <Check className="w-5 h-5 text-[#34D399]" /> : <Copy className="w-5 h-5" />}
+            {copied ? <Check className="w-5 h-5" style={{ color: "#1E3A8A" }} /> : <Copy className="w-5 h-5" />}
             {copied ? "Copiado" : "Copiar protocolo"}
           </button>
         </motion.div>
@@ -86,7 +102,8 @@ export default function Protocol() {
         <button
           data-testid="protocol-home-btn"
           onClick={() => navigate("/")}
-          className="mt-10 inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors"
+          className="btn btn-link mt-4 d-inline-flex align-items-center gap-1 text-decoration-none"
+          style={{ color: "#6B7A99" }}
         >
           <Home className="w-4 h-4" /> Voltar ao início
         </button>

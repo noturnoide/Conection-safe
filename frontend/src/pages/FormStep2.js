@@ -5,7 +5,6 @@ import { ArrowLeft, Plus, X, Send, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import Shell from "../components/Shell";
 import StyledSelect from "../components/StyledSelect";
-import { Textarea } from "../components/ui/textarea";
 import { createReport } from "../lib/api";
 
 const CARGOS = ["Aluno", "Limpeza", "Professor", "Coordenação"];
@@ -15,6 +14,15 @@ const TURMAS = [
   "2A", "2B", "2C", "2D",
   "3A", "3B", "3C", "3D",
 ];
+
+const inputStyle = {
+  borderRadius: "2rem",
+  padding: "1rem 1.5rem",
+  fontSize: "1rem",
+  border: "1px solid rgba(11,30,63,0.10)",
+  color: "#0B1E3F",
+  backgroundColor: "#fff",
+};
 
 export default function FormStep2() {
   const navigate = useNavigate();
@@ -77,53 +85,56 @@ export default function FormStep2() {
 
   return (
     <Shell testid="form-step2-page">
-      <section className="max-w-2xl mx-auto px-6 py-12 md:py-16">
+      <section className="container px-6 py-5" style={{ maxWidth: "42rem" }}>
         <button
           data-testid="back-step1-btn"
           onClick={() => navigate("/relatar")}
-          className="inline-flex items-center gap-2 text-white/50 hover:text-white text-sm mb-8 transition-colors"
+          className="btn btn-link p-0 small text-decoration-none d-inline-flex align-items-center gap-1 mb-4"
+          style={{ color: "#6B7A99" }}
         >
           <ArrowLeft className="w-4 h-4" /> Voltar à etapa 1
         </button>
 
-        <div className="mb-2 text-xs tracking-[0.3em] uppercase font-semibold text-[#34D399]">
+        <div className="small text-uppercase fw-semibold mb-2" style={{ letterSpacing: "0.3em", color: "#1E3A8A" }}>
           Etapa 2 de 2
         </div>
-        <h2 className="font-head text-3xl md:text-4xl font-medium tracking-tight text-white mb-3">
+        <h2 className="fs-1 fw-medium mb-2" style={{ color: "#0B1E3F", letterSpacing: "-0.02em" }}>
           Detalhes do relato
         </h2>
-        <p className="text-slate-400 mb-10">Quanto mais detalhes, melhor poderemos ajudar. Continua anônimo.</p>
+        <p className="mb-5" style={{ color: "#6B7A99" }}>Quanto mais detalhes, melhor poderemos ajudar. Continua anônimo.</p>
 
-        <form onSubmit={handleSubmit} className="space-y-10">
-          <div>
-            <label className="block mb-1 font-medium text-white">
+        <form onSubmit={handleSubmit}>
+          <div className="mb-5">
+            <label className="form-label fw-medium mb-1 d-block" style={{ color: "#0B1E3F" }}>
               Nos conte o que aconteceu e lembre-se de informar todos os detalhes
             </label>
-            <p className="text-xs text-white/40 mb-3">Escreva livremente.</p>
-            <Textarea
+            <p className="small mb-2" style={{ color: "#6B7A99" }}>Escreva livremente.</p>
+            <textarea
               data-testid="detalhes-textarea"
               value={detalhes}
               onChange={(e) => setDetalhes(e.target.value)}
               rows={6}
               placeholder="Descreva a situação..."
-              className="w-full rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-md px-6 py-4 text-base text-white placeholder:text-white/30 focus-visible:ring-4 focus-visible:ring-[#34D399]/10 focus-visible:border-[#34D399]/50 transition-colors duration-300 resize-none"
+              className="form-control shadow-sm"
+              style={{ ...inputStyle, resize: "none" }}
             />
           </div>
 
-          <div>
-            <div className="flex items-center justify-between mb-4">
-              <label className="font-medium text-white">Pessoas envolvidas</label>
+          <div className="mb-4">
+            <div className="d-flex align-items-center justify-content-between mb-3">
+              <label className="form-label fw-medium mb-0" style={{ color: "#0B1E3F" }}>Pessoas envolvidas</label>
               <button
                 type="button"
                 data-testid="add-denunciado-btn"
                 onClick={addDenunciado}
-                className="inline-flex items-center gap-2 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-white text-sm px-4 py-2 transition-colors"
+                className="btn btn-sm rounded-pill d-inline-flex align-items-center gap-1"
+                style={{ backgroundColor: "#F1F4FA", color: "#0B1E3F", border: "1px solid rgba(11,30,63,0.10)" }}
               >
                 <Plus className="w-4 h-4" /> Adicionar
               </button>
             </div>
 
-            <div className="space-y-4">
+            <div>
               <AnimatePresence initial={false}>
                 {denunciados.map((d, idx) => (
                   <motion.div
@@ -134,7 +145,12 @@ export default function FormStep2() {
                     exit={{ opacity: 0, scale: 0.96 }}
                     transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                     data-testid={`denunciado-card-${idx}`}
-                    className="rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-2xl p-6 relative"
+                    className="bg-white p-4 position-relative mb-3"
+                    style={{
+                      border: "1px solid rgba(11,30,63,0.08)",
+                      borderRadius: "1.75rem",
+                      boxShadow: "0 10px 40px rgba(11,30,63,0.06)",
+                    }}
                   >
                     {denunciados.length > 1 && (
                       <button
@@ -142,13 +158,14 @@ export default function FormStep2() {
                         data-testid={`remove-denunciado-${idx}`}
                         onClick={() => removeDenunciado(idx)}
                         aria-label="Remover pessoa envolvida"
-                        className="absolute top-4 right-4 text-white/40 hover:text-[#34D399] transition-colors"
+                        className="btn btn-sm position-absolute p-1"
+                        style={{ top: "0.75rem", right: "0.75rem", color: "#6B7A99" }}
                       >
                         <X className="w-5 h-5" />
                       </button>
                     )}
-                    <label className="block mb-3 text-sm text-white/80">
-                      Indique o nome da pessoa envolvida <span className="text-white/40">(opcional)</span>
+                    <label className="form-label small d-block mb-2" style={{ color: "#334166" }}>
+                      Indique o nome da pessoa envolvida <span style={{ color: "#94A3B8" }}>(opcional)</span>
                     </label>
                     <input
                       type="text"
@@ -156,10 +173,11 @@ export default function FormStep2() {
                       value={d.nome}
                       onChange={(e) => updateDenunciado(idx, "nome", e.target.value)}
                       placeholder="Nome (opcional)"
-                      className="w-full rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-md px-6 py-4 text-base text-white placeholder:text-white/30 focus:outline-none focus:border-[#34D399]/50 focus:bg-white/10 focus:ring-4 focus:ring-[#34D399]/10 transition-colors duration-300 mb-5"
+                      className="form-control shadow-sm mb-3"
+                      style={inputStyle}
                     />
 
-                    <label className="block mb-3 text-sm text-white/80">
+                    <label className="form-label small d-block mb-2" style={{ color: "#334166" }}>
                       Indique o cargo da pessoa envolvida
                     </label>
                     <StyledSelect
@@ -178,7 +196,7 @@ export default function FormStep2() {
                           transition={{ duration: 0.35 }}
                           className="overflow-hidden"
                         >
-                          <label className="block mb-3 mt-5 text-sm text-white/80">
+                          <label className="form-label small d-block mb-2 mt-3" style={{ color: "#334166" }}>
                             Qual a turma do aluno?
                           </label>
                           <StyledSelect
@@ -200,7 +218,10 @@ export default function FormStep2() {
             type="submit"
             data-testid="submit-report-btn"
             disabled={submitting}
-            className="group inline-flex items-center justify-center gap-3 rounded-full bg-[#34D399] text-[#042F2E] font-medium px-8 py-4 hover:bg-[#10B981] transition-colors active:scale-[0.98] disabled:opacity-60"
+            className="btn rounded-pill px-4 py-3 fw-medium d-inline-flex align-items-center gap-2 mt-3"
+            style={{ backgroundColor: "#0B1E3F", color: "#fff", border: "none", opacity: submitting ? 0.6 : 1 }}
+            onMouseEnter={(e) => !submitting && (e.currentTarget.style.backgroundColor = "#142A55")}
+            onMouseLeave={(e) => !submitting && (e.currentTarget.style.backgroundColor = "#0B1E3F")}
           >
             {submitting ? (
               <>

@@ -24,7 +24,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       </SmoothScroll>
-      <Toaster position="top-center" theme="dark" richColors />
+      <Toaster position="top-center" theme="light" richColors />
     </div>
   );
 }

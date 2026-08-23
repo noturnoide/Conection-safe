@@ -6,6 +6,17 @@ import Shell from "../components/Shell";
 import { getReport } from "../lib/api";
 import ReportDetail from "../components/ReportDetail";
 
+const inputStyle = {
+  borderRadius: "2rem",
+  padding: "1rem 1.5rem",
+  fontSize: "1rem",
+  border: "1px solid rgba(11,30,63,0.10)",
+  color: "#0B1E3F",
+  backgroundColor: "#fff",
+  fontFamily: "'Roboto Mono', monospace",
+  letterSpacing: "0.15em",
+};
+
 export default function Consultar() {
   const [code, setCode] = useState("");
   const [loading, setLoading] = useState(false);
@@ -28,27 +39,29 @@ export default function Consultar() {
 
   return (
     <Shell testid="consultar-page">
-      <section className="max-w-2xl mx-auto px-6 py-12 md:py-16">
-        <h2 className="font-head text-3xl md:text-4xl font-medium tracking-tight text-white mb-3">
+      <section className="container px-6 py-5" style={{ maxWidth: "42rem" }}>
+        <h2 className="fs-1 fw-medium mb-2" style={{ color: "#0B1E3F", letterSpacing: "-0.02em" }}>
           Consultar protocolo
         </h2>
-        <p className="text-slate-400 mb-10">
+        <p className="mb-5" style={{ color: "#6B7A99" }}>
           Digite o código anônimo que você recebeu ao enviar o relato.
         </p>
 
-        <form onSubmit={search} className="flex flex-col sm:flex-row gap-4 mb-12">
+        <form onSubmit={search} className="d-flex flex-column flex-sm-row gap-3 mb-5">
           <input
             data-testid="protocol-input"
             value={code}
             onChange={(e) => setCode(e.target.value)}
             placeholder="ESC-XXXX-XXXX"
-            className="flex-1 rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-md px-6 py-4 text-base text-white placeholder:text-white/30 font-mono tracking-widest focus:outline-none focus:ring-4 focus:ring-[#34D399]/10 focus:border-[#34D399]/50 transition-colors"
+            className="form-control shadow-sm flex-grow-1"
+            style={inputStyle}
           />
           <button
             type="submit"
             data-testid="search-protocol-btn"
             disabled={loading}
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-[#34D399] text-[#042F2E] font-medium px-8 py-4 hover:bg-[#10B981] transition-colors active:scale-[0.98] disabled:opacity-60"
+            className="btn rounded-pill px-4 py-3 fw-medium d-inline-flex align-items-center justify-content-center gap-2"
+            style={{ backgroundColor: "#0B1E3F", color: "#fff", border: "none", opacity: loading ? 0.6 : 1 }}
           >
             {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : <Search className="w-5 h-5" />}
             Buscar
