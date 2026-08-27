@@ -1,4 +1,4 @@
-import { MapPin, Clock, User, FileText } from "lucide-react";
+import Icon from "./Icon";
 
 const formatDate = (iso) => {
   try {
@@ -34,10 +34,10 @@ export default function ReportDetail({ report }) {
       </div>
 
       <div className="row g-3 mb-4">
-        <div className="col-sm-6"><Info icon={FileText} label="Tipo de situação" value={report.tipo} /></div>
-        <div className="col-sm-6"><Info icon={MapPin} label="Localidade" value={report.localidade} /></div>
-        <div className="col-sm-6"><Info icon={User} label="Vivência" value={report.vivencia} /></div>
-        <div className="col-sm-6"><Info icon={Clock} label="Quando ocorreu" value={report.tempo} /></div>
+        <div className="col-sm-6"><InfoRow icon="file-document-outline" label="Tipo de situação" value={report.tipo} /></div>
+        <div className="col-sm-6"><InfoRow icon="map-marker" label="Localidade" value={report.localidade} /></div>
+        <div className="col-sm-6"><InfoRow icon="account" label="Vivência" value={report.vivencia} /></div>
+        <div className="col-sm-6"><InfoRow icon="clock-outline" label="Quando ocorreu" value={report.tempo} /></div>
       </div>
 
       <div className="mb-4">
@@ -79,7 +79,7 @@ export default function ReportDetail({ report }) {
   );
 }
 
-const Info = ({ icon: Icon, label, value }) => (
+const InfoRow = ({ icon, label, value }) => (
   <div
     className="p-3"
     style={{
@@ -88,8 +88,8 @@ const Info = ({ icon: Icon, label, value }) => (
       borderRadius: "1rem",
     }}
   >
-    <div className="d-flex align-items-center gap-1 small text-uppercase mb-1" style={{ color: "#6B7A99", letterSpacing: "0.08em" }}>
-      <Icon className="w-3 h-3" /> {label}
+    <div className="d-flex align-items-center gap-2 small text-uppercase mb-1" style={{ color: "#6B7A99", letterSpacing: "0.08em" }}>
+      <Icon name={icon} size={3} /> {label}
     </div>
     <p className="mb-0" style={{ color: "#0B1E3F" }}>{value}</p>
   </div>

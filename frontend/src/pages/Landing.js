@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Lock, EyeOff, HeartHandshake, ArrowRight } from "lucide-react";
+import Icon from "../components/Icon";
 import Shell from "../components/Shell";
 
 const heroLines = ["Você está", "seguro aqui."];
@@ -18,19 +18,19 @@ const chapters = [
     n: "01",
     title: "Sigilo absoluto",
     text: "Nenhum nome, e-mail ou dado pessoal é solicitado. Seu relato é registrado sem qualquer vínculo com sua identidade.",
-    icon: EyeOff,
+    icon: "eye-off",
   },
   {
     n: "02",
     title: "Um espaço protegido",
     text: "Este é um canal de escuta. Aqui você pode relatar assédio moral, assédio sexual ou cyberbullying com total tranquilidade.",
-    icon: Lock,
+    icon: "lock",
   },
   {
     n: "03",
     title: "Estamos ouvindo",
     text: "Cada relato é lido com cuidado e respeito. Você recebe um protocolo anônimo para acompanhar, sem se expor.",
-    icon: HeartHandshake,
+    icon: "hand-heart",
   },
 ];
 
@@ -96,7 +96,7 @@ export default function Landing() {
             onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#0B1E3F")}
           >
             Iniciar relato anônimo
-            <ArrowRight className="w-5 h-5" />
+            <Icon name="arrow-right" size={5} />
           </button>
           <button
             data-testid="consultar-btn"
@@ -112,7 +112,6 @@ export default function Landing() {
       <section className="container px-6 py-5 pb-5" style={{ maxWidth: "72rem", paddingTop: "6rem", paddingBottom: "8rem" }}>
         <div className="row g-4">
           {chapters.map((c, i) => {
-            const Icon = c.icon;
             return (
               <div key={c.n} className="col-md-4">
                 <motion.div
@@ -130,7 +129,7 @@ export default function Landing() {
                 >
                   <div className="d-flex align-items-center justify-content-between mb-4">
                     <span className="fw-light" style={{ fontSize: "3rem", color: "rgba(11,30,63,0.12)" }}>{c.n}</span>
-                    <Icon className="w-6 h-6" style={{ color: "#1E3A8A" }} />
+                    <Icon name={c.icon} size={6} style={{ color: "#1E3A8A" }} />
                   </div>
                   <h3 className="fs-5 fw-medium mb-2" style={{ color: "var(--esc-ink)" }}>{c.title}</h3>
                   <p className="small mb-0 lh-base" style={{ color: "#6B7A99" }}>{c.text}</p>

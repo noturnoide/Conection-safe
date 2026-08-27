@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Search, Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import Icon from "../components/Icon";
 import Shell from "../components/Shell";
 import { getReport } from "../lib/api";
 import ReportDetail from "../components/ReportDetail";
@@ -63,7 +63,7 @@ export default function Consultar() {
             className="btn rounded-pill px-4 py-3 fw-medium d-inline-flex align-items-center justify-content-center gap-2"
             style={{ backgroundColor: "#0B1E3F", color: "#fff", border: "none", opacity: loading ? 0.6 : 1 }}
           >
-            {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : <Search className="w-5 h-5" />}
+            {loading ? <Icon name="loading" size={5} spin /> : <Icon name="magnify" size={5} />}
             Buscar
           </button>
         </form>

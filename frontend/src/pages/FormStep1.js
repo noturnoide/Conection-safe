@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, ArrowLeft, Info } from "lucide-react";
 import { toast } from "sonner";
+import Icon from "../components/Icon";
 import Shell from "../components/Shell";
 import StyledSelect from "../components/StyledSelect";
 import {
@@ -103,7 +103,7 @@ export default function FormStep1() {
           className="btn btn-link p-0 small text-decoration-none d-inline-flex align-items-center gap-2 mb-5"
           style={{ color: "#6B7A99" }}
         >
-          <ArrowLeft className="w-4 h-4" /> Voltar
+          <Icon name="arrow-left" size={4} /> Voltar
         </button>
 
         <div className="small text-uppercase fw-semibold mb-3" style={{ letterSpacing: "0.3em", color: "#1E3A8A" }}>
@@ -163,7 +163,7 @@ export default function FormStep1() {
                     borderRadius: "1.25rem",
                   }}
                 >
-                  <Info className="w-5 h-5 flex-shrink-0 mt-1" style={{ color: "#1E3A8A" }} />
+                  <Icon name="information-outline" size={5} style={{ color: "#1E3A8A", marginTop: "0.15rem", flexShrink: 0 }} />
                   <p className="mb-0 small lh-base" style={{ color: "#334166" }}>
                     {renderBold(OBSERVATION)}
                   </p>
@@ -181,7 +181,7 @@ export default function FormStep1() {
             onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#0B1E3F")}
           >
             Continuar
-            <ArrowRight className="w-5 h-5" />
+            <Icon name="arrow-right" size={5} />
           </button>
         </form>
       </section>

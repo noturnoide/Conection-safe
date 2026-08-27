@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, Plus, X, Send, Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import Icon from "../components/Icon";
 import Shell from "../components/Shell";
 import StyledSelect from "../components/StyledSelect";
 import { createReport } from "../lib/api";
@@ -92,7 +92,7 @@ export default function FormStep2() {
           className="btn btn-link p-0 small text-decoration-none d-inline-flex align-items-center gap-2 mb-5"
           style={{ color: "#6B7A99" }}
         >
-          <ArrowLeft className="w-4 h-4" /> Voltar à etapa 1
+          <Icon name="arrow-left" size={4} /> Voltar à etapa 1
         </button>
 
         <div className="small text-uppercase fw-semibold mb-3" style={{ letterSpacing: "0.3em", color: "#1E3A8A" }}>
@@ -130,7 +130,7 @@ export default function FormStep2() {
                 className="btn btn-sm rounded-pill d-inline-flex align-items-center gap-2 px-3 py-2"
                 style={{ backgroundColor: "#F1F4FA", color: "#0B1E3F", border: "1px solid rgba(11,30,63,0.10)" }}
               >
-                <Plus className="w-4 h-4" /> Adicionar
+                <Icon name="plus" size={4} /> Adicionar
               </button>
             </div>
 
@@ -162,7 +162,7 @@ export default function FormStep2() {
                         className="btn btn-sm position-absolute p-1"
                         style={{ top: "0.75rem", right: "0.75rem", color: "#6B7A99" }}
                       >
-                        <X className="w-5 h-5" />
+                        <Icon name="close" size={5} />
                       </button>
                     )}
                     <label className="form-label small d-block mb-2" style={{ color: "#334166" }}>
@@ -226,11 +226,11 @@ export default function FormStep2() {
           >
             {submitting ? (
               <>
-                <Loader2 className="w-5 h-5 animate-spin" /> Enviando...
+                <Icon name="loading" size={5} spin /> Enviando...
               </>
             ) : (
               <>
-                Enviar relato completo <Send className="w-5 h-5" />
+                Enviar relato completo <Icon name="send" size={5} />
               </>
             )}
           </button>

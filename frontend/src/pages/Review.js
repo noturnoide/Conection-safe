@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Inbox, Loader2, RefreshCw } from "lucide-react";
 import { toast } from "sonner";
+import Icon from "../components/Icon";
 import Shell from "../components/Shell";
 import ReportDetail from "../components/ReportDetail";
 import { listReports } from "../lib/api";
@@ -39,7 +39,7 @@ export default function Review() {
             className="btn btn-sm rounded-pill d-inline-flex align-items-center gap-2 px-3 py-2"
             style={{ backgroundColor: "#F1F4FA", color: "#0B1E3F", border: "1px solid rgba(11,30,63,0.10)" }}
           >
-            <RefreshCw className="w-4 h-4" /> Atualizar
+            <Icon name="refresh" size={4} /> Atualizar
           </button>
         </div>
         <p className="mb-5 fs-6" style={{ color: "#6B7A99" }}>
@@ -48,7 +48,7 @@ export default function Review() {
 
         {loading ? (
           <div className="d-flex align-items-center justify-content-center py-5" style={{ color: "#6B7A99" }}>
-            <Loader2 className="w-8 h-8 animate-spin" />
+            <Icon name="loading" size={8} spin />
           </div>
         ) : reports.length === 0 ? (
           <div
@@ -60,7 +60,7 @@ export default function Review() {
               color: "#6B7A99",
             }}
           >
-            <Inbox className="w-10 h-10 mx-auto mb-3" style={{ color: "#94A3B8" }} />
+            <Icon name="inbox" size={10} className="mx-auto d-block mb-3" style={{ color: "#94A3B8" }} />
             Nenhum relato recebido ainda.
           </div>
         ) : (

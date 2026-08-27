@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ShieldCheck } from "lucide-react";
+import Icon from "./Icon";
 
 // Full-page wrapper with the white + dark navy mesh background.
 export default function Shell({ children, showNav = true, testid }) {
@@ -16,7 +16,7 @@ export default function Shell({ children, showNav = true, testid }) {
               className="d-flex align-items-center gap-2 text-decoration-none"
               style={{ color: "var(--esc-ink)" }}
             >
-              <ShieldCheck className="w-5 h-5" style={{ color: "#1E3A8A" }} />
+              <Icon name="shield-check" size={5} style={{ color: "#1E3A8A" }} />
               <span className="fw-medium fs-5" style={{ letterSpacing: "-0.01em" }}>Canal de Escuta</span>
             </Link>
             <div className="d-flex align-items-center gap-4 small">

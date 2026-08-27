@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Copy, Check, ShieldCheck, Home } from "lucide-react";
 import { toast } from "sonner";
+import Icon from "../components/Icon";
 import Shell from "../components/Shell";
 
 export default function Protocol() {
@@ -37,7 +37,7 @@ export default function Protocol() {
           className="rounded-circle d-flex align-items-center justify-content-center mb-4"
           style={{ width: "5rem", height: "5rem", backgroundColor: "rgba(30,58,138,0.10)", border: "1px solid rgba(30,58,138,0.25)" }}
         >
-          <ShieldCheck className="w-9 h-9" style={{ color: "#1E3A8A" }} />
+          <Icon name="shield-check" size={9} style={{ color: "#1E3A8A" }} />
         </motion.div>
 
         <motion.h2
@@ -94,7 +94,7 @@ export default function Protocol() {
             className="btn rounded-pill px-4 py-2 d-inline-flex align-items-center gap-2"
             style={{ backgroundColor: "#F1F4FA", color: "#0B1E3F", border: "1px solid rgba(11,30,63,0.10)" }}
           >
-            {copied ? <Check className="w-5 h-5" style={{ color: "#1E3A8A" }} /> : <Copy className="w-5 h-5" />}
+            {copied ? <Icon name="check" size={5} style={{ color: "#1E3A8A" }} /> : <Icon name="content-copy" size={5} />}
             {copied ? "Copiado" : "Copiar protocolo"}
           </button>
         </motion.div>
@@ -105,7 +105,7 @@ export default function Protocol() {
           className="btn btn-link mt-4 d-inline-flex align-items-center gap-1 text-decoration-none"
           style={{ color: "#6B7A99" }}
         >
-          <Home className="w-4 h-4" /> Voltar ao início
+          <Icon name="home" size={4} /> Voltar ao início
         </button>
       </section>
     </Shell>
