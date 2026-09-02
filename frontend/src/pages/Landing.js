@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Icon from "../components/Icon";
 import Shell from "../components/Shell";
+import logoConexaoSegura from "../assets/logo_conexaosegura.png";
 
 const heroLines = ["Você está", "seguro aqui."];
 
@@ -40,6 +41,19 @@ export default function Landing() {
   return (
     <Shell testid="landing-page">
       <section className="container px-6 pt-16 pb-24 md:pt-24 min-h-[78vh] d-flex flex-column justify-content-center" style={{ maxWidth: "72rem" }}>
+        <motion.img
+         src={logoConexaoSegura}
+         alt="Logo Conexão Segura"
+         initial={{ opacity: 0, y: 12 }}
+         animate={{ opacity: 1, y: 0 }}
+         transition={{ duration: 0.6 }}
+         className="mb-4"
+         style={{
+           width: "110px",
+           height: "auto",
+           objectFit: "contain"
+         }}
+       />
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -47,7 +61,7 @@ export default function Landing() {
           className="mb-4 small text-uppercase fw-semibold"
           style={{ letterSpacing: "0.3em", color: "#1E3A8A" }}
         >
-          Canal de Escuta Anônima
+          Conexão Segura: Canal de Escuta Anônimo
         </motion.p>
 
         <h1
